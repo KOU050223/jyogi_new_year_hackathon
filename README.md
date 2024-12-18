@@ -53,6 +53,23 @@ pyxel play 8bit-bgm-gen
 pyxel edit ./assets/usako
 ```
 
+# デプロイ
+1. ビルド
+```
+cd ./SplatterUsako
+pyxel package SplatterUsako main.py
+```
+
+2. HTMLファイル作成
+```
+pyxel app2html SplatterUsako.pyxapp
+```
+3. コピー
+```
+copy SplatterUsako.html ..\index.html
+cd ../
+```
+
 ## 参考サイト
 
 [【Python / Pyxel】Webで遊べてSNSに共有できる，レトロゲームを作ってみた．](https://qiita.com/rwatanab1999/items/d5c0bb876f0b44cac2f0)

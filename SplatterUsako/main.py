@@ -1,3 +1,10 @@
+# title: Splatter Usako
+# author: KOUHEI UOZUMI
+# desc: A Pyxel platformer example
+# site: https://kou050223.github.io/jyogi_new_year_hackathon/
+# license: MIT
+# version: 1.0
+
 import pyxel
 from core.layout import draw_layout
 from entities.player import Player
@@ -5,7 +12,7 @@ from constants import *
 
 class App:
     def __init__(self):
-        pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, title="Game Layout Example")
+        pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, title="Splatter Usako")
         # アセットロード
         pyxel.load("assets/usako.pyxres")
         self.player = Player()
