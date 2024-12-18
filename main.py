@@ -32,5 +32,5 @@ class App:
         draw_layout(self.score, self.time, self.life, self.items)
         # プレイヤーの描画
         self.player.draw()
-
-App()
+if __name__ == '__main__':
+    app = App()
