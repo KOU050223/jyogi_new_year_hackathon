@@ -47,6 +47,12 @@ cd 8bit-bgm-generator-master
 pyxel play 8bit-bgm-gen
 ```
 
+# エディター起動
+
+```bash
+pyxel edit ./assets/usako
+```
+
 ## 参考サイト
 
 [【Python / Pyxel】Webで遊べてSNSに共有できる，レトロゲームを作ってみた．](https://qiita.com/rwatanab1999/items/d5c0bb876f0b44cac2f0)
