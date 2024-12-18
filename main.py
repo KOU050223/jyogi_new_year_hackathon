@@ -1,53 +1,36 @@
 import pyxel
-import PyxelUniversalFont as puf
-from move_player import move_player
-from constants import PLAYER_W, PLAYER_H
+from core.layout import draw_layout
+from entities.player import Player
+from constants import *
 
 class App:
     def __init__(self):
-        pyxel.init(160, 120, title="Jyogi Usako Game")
-        # font設定
-        self.writer = puf.Writer("misaki_gothic.ttf")
-
+        pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, title="Game Layout Example")
         # アセットロード
         pyxel.load("assets/usako.pyxres")
-
+        self.player = Player()
         self.score = 0
-        # プレイヤーの初期値
-        # 座標
-        self.player_x = 72
-        self.player_y = -16
-        # サイズ
-        self.player_w = PLAYER_W
-        self.player_h = PLAYER_H
-        self.player_rotate = 0  # 回転
-        self.player_scale = 0   # 拡大率 
-        self.player_dy = 0
-        self.is_alive = True
-        pyxel.playm(0, loop=True)
+        self.time = 190
+        self.life = 5
+        self.items = []
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        if pyxel.btnp(pyxel.KEY_Q):
-            pyxel.quit()
-        move_player(self)
+        # プレイヤーの移動ロジック (仮)
+        if pyxel.btn(pyxel.KEY_LEFT):
+            self.player.x = max(self.player.x - 2, 0)
+        if pyxel.btn(pyxel.KEY_RIGHT):
+            self.player.x = min(self.player.x + 2, SCREEN_WIDTH - PLAYER_W)
+        if pyxel.btn(pyxel.KEY_UP):
+            self.player.y = max(self.player.y - 2, 20)
+        if pyxel.btn(pyxel.KEY_DOWN):
+            self.player.y = min(self.player.y + 2, SCREEN_HEIGHT - 20)
 
     def draw(self):
-        pyxel.cls(12)
-        # blt(x, y, img, u, v, w, h, [colkey], [rotate], [scale])
-        # うさこ表示
-        pyxel.blt(70, 50, 0, 0, 0, PLAYER_W, PLAYER_H, 0, 0,0.8)
-
-        # リタネコ表示
-        # Draw title
-        pyxel.text(65, 30, "Usako Games", pyxel.frame_count % 16)
-
-        # draw(x座標, y座標, テキスト, フォントサイズ, 文字の色(16:モザイク))
-        # 背景色はデフォルト値(-1:透明)
-        self.writer.draw(60, 40, "うさこゲームズ!", 7)
-
-        # Draw score
-        s = f"SCORE {self.score:>4}"
-        pyxel.text(5, 4, s, 1)
+        pyxel.cls(0)
+        # UIレイアウトの描画
+        draw_layout(self.score, self.time, self.life, self.items)
+        # プレイヤーの描画
+        self.player.draw()
 
 App()
