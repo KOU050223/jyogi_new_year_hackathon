@@ -17,3 +17,6 @@ def draw_layout(score, time, life, items):
     # ITEM
     pyxel.text(ITEM_X, ITEM_Y, "ITEM", 1)
     pyxel.rectb(ITEM_X + 20, ITEM_Y, 30, 10, 1)
+
+    # メイン画面
+    pyxel.rectb(0, 20, SCREEN_WIDTH, 80, 7)
