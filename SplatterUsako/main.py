@@ -7,6 +7,7 @@
 
 import pyxel
 from core.layout import draw_layout
+from systems.timer import count_timer
 from entities.player import Player
 from constants import *
 
@@ -17,9 +18,11 @@ class App:
         pyxel.load("assets/usako.pyxres")
         self.player = Player()
         self.score = 0
-        self.time = 190
+        self.time = 190 # タイマーの初期値
         self.life = 5
+        self.zanki = 3
         self.items = []
+        self.state = "GAME"
 
         #ジャンプ関係
         self.is_jumping = False
@@ -31,7 +34,10 @@ class App:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        self.update_player()
+        if self.state == "GAME":
+            self.time = count_timer(self.time)
+            self.update_player()
+        
         # デバッグ用
         if pyxel.btnp(pyxel.KEY_O):
             print(self.is_jumping,self.jump_velocity,self.gravity,        self.jump_strength,self.max_jump_height)
