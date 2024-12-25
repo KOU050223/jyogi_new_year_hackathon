@@ -10,7 +10,7 @@ class Player:
 
     def draw(self):
         pyxel.blt(self.
-        x, self.y, 0, 0, 0, self.w, self.h, 0,0,0.7)
+        x, self.y, 0, 0, 56, self.w, self.h, 0,0,0.7)
 
     # def update(self):
         # プレイヤーの位置制限
