@@ -43,14 +43,13 @@ pyxel watch ./SplatterUsako ./SplatterUsako/main.py
 https://github.com/shiromofufactory/8bit-bgm-generator
 
 ```bash
-cd 8bit-bgm-generator-master
-pyxel play 8bit-bgm-gen
+pyxel play ./8bit-bgm-generator-master/8bit-bgm-gen
 ```
 
 # エディター起動
 
 ```bash
-pyxel edit ./assets/usako
+pyxel edit ./SplatterUsako/assets/usako
 ```
 
 # デプロイ
