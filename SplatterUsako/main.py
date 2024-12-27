@@ -33,6 +33,9 @@ class App:
         # アニメーション関係
         self.panchframe = 0
         self.is_panching = False
+        self.kungfuframe = 0
+        self.is_kicking = False
+        self.is_jamping = False
 
         pyxel.run(self.update, self.draw)
 
@@ -55,9 +58,6 @@ class App:
             print(self.is_jumping,self.jump_velocity,self.gravity,        self.jump_strength,self.max_jump_height)
         if pyxel.btnp(pyxel.KEY_P):
             print(self.player.x,self.player.y)
-        if pyxel.btn(pyxel.KEY_U):
-            print("is_panching",self.is_panching)
-            print("panchframe",self.panchframe)
     def draw(self):
         pyxel.cls(0)
         if self.state == "TITLE":
@@ -69,11 +69,16 @@ class App:
             # UIレイアウトの描画
             draw_layout(self.score, self.time, self.life, self.items)
             # プレイヤーの描画
+
+            # パンチアニメーションの変化
             if not self.is_panching:
                 self.player.draw()
-            if pyxel.btn(pyxel.KEY_U):
-                print("パンチ")
-                pyxel.blt(self.player.x, self.player.y, 0, self.panchframe * 32, 56, 32, 16, 0,0,0.7)
+            if self.is_panching:    
+                # x,y,img,u,v,w,h,colkey,rotate,scale
+                # 0,56 32,56 64,56 96,56
+                pyxel.blt(self.player.x, self.player.y, 0, self.panchframe * 32, 56, 32, 48, 0,0,0.7)
+            # 歩行アニメーションの変化
+            # キックアニメーションの変化
 
         if self.state == "GAMEOVER":
             print("GAMEOVER")
@@ -119,12 +124,11 @@ class App:
 
         # パンチ
         if pyxel.btnp(pyxel.KEY_U):
-            print("パンチaa")
             self.is_panching = True
             self.panchframe = 1
         if self.is_panching:
-            # self.panchframe += 1
-            if self.panchframe >= 3:
+            self.panchframe += 1
+            if self.panchframe >= 4:
                 self.panchframe = 0
                 self.is_panching = False
 
