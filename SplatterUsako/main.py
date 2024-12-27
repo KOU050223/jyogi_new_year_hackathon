@@ -33,9 +33,9 @@ class App:
         # アニメーション関係
         self.panchframe = 0
         self.is_panching = False
-        self.kungfuframe = 0
-        self.is_kicking = False
-        self.is_jamping = False
+        self.is_squating = False   # しゃがみ状態
+        self.kickframe = 0
+        self.is_kicking = False # キック状態
 
         pyxel.run(self.update, self.draw)
 
@@ -68,15 +68,18 @@ class App:
             # print("GAME")
             # UIレイアウトの描画
             draw_layout(self.score, self.time, self.life, self.items)
-            # プレイヤーの描画
 
-            # パンチアニメーションの変化
-            if not self.is_panching:
+            # プレイヤーの描画
+            if not self.is_panching and not self.is_squating and not self.is_kicking:
                 self.player.draw()
+            # パンチアニメーションの変化
             if self.is_panching:    
                 # x,y,img,u,v,w,h,colkey,rotate,scale
                 # 0,56 32,56 64,56 96,56
                 pyxel.blt(self.player.x, self.player.y, 0, self.panchframe * 32, 56, 32, 48, 0,0,0.7)
+            # しゃがみアニメーションの変化
+            if self.is_squating:
+                pyxel.blt(self.player.x, self.player.y, 0, 0, 104, 24, 48, 0,0,0.7)
             # 歩行アニメーションの変化
             # キックアニメーションの変化
 
@@ -122,7 +125,7 @@ class App:
             self.player.y = 52
             self.is_jumping = False
 
-        # パンチ
+        # パンチ処理
         if pyxel.btnp(pyxel.KEY_U):
             self.is_panching = True
             self.panchframe = 1
@@ -133,9 +136,16 @@ class App:
                 self.is_panching = False
 
 
-        # プレイヤーのアニメーション(しゃがみ)
+        # しゃがみ処理
+        if pyxel.btn(pyxel.KEY_S):
+            self.is_squating = True
+        else:
+            self.is_squating = False
 
-        # プレイヤーのアニメーション(キック)
+        # キック処理（しゃがみかつパンチ）
+        if self.is_panching and self.is_squating:
+            self.is_kicking = True
+            self.kickframe = 1
 
         ### プレイヤーの当たり判定
 
