@@ -12,6 +12,18 @@ https://qiita.com/shun_sakamoto/items/7944d0ac4d30edf91fde
 python -m venv pyxel
 ```
 
+ライブラリの共有
+
+書き出し
+```
+pip freeze >  requirements.txt
+```
+
+インスト―ル
+```
+pip install -r requirements.txt
+```
+
 アクティベート
 
 ```bash
