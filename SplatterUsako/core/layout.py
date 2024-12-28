@@ -9,7 +9,7 @@ def draw_layout(score, time, life, items):
     # SCORE
     pyxel.text(SCORE_X, SCORE_Y, f"SCORE: {score}", 1)
     # TIME
-    pyxel.text(TIME_X, TIME_Y, f"TIME: {time}", 1)
+    pyxel.text(TIME_X, TIME_Y, f"TIME: {int(time)}", 1)
     # LIFE
     pyxel.text(LIFE_X, LIFE_Y, f"LIFE:", 1)
     for i in range(life):

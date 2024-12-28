@@ -12,8 +12,7 @@ class Ritacat:
         # self.is_alive = True
 
     def draw(self):
-        pyxel.blt(self.
-        x, self.y, 2, 0, 24, self.w, self.h, 0,0,0.7)
+        pyxel.blt(self.x, self.y, 2, 0, 24, self.w, self.h, 0,0,0.7)
 
     # def update(self):
         # プレイヤーの位置制限
