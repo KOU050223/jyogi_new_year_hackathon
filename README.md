@@ -26,8 +26,16 @@ pip install -r requirements.txt
 
 アクティベート
 
+windows
+
 ```bash
 .\pyxel\Scripts\activate
+```
+
+mac
+
+```bash
+source pyxel/bin/activate  
 ```
 
 プログラム起動
@@ -75,9 +83,24 @@ pyxel package SplatterUsako ./SplatterUsako/main.py
 pyxel app2html SplatterUsako.pyxapp
 ```
 3. コピー
+
+windows
 ```
+rm -rf index.html
 copy SplatterUsako.html index.html
 ```
+
+mac
+```
+rm -rf index.html
+cp SplatterUsako.html index.html
+```
+
+
+デプロイ先(Pages)
+
+https://kou050223.github.io/jyogi_new_year_hackathon/
+
 
 ## 参考サイト
 
